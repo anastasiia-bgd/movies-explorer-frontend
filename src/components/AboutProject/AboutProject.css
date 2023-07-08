@@ -1,0 +1,139 @@
+.about {
+    margin: 0 auto;
+    max-width: 1280px;
+    min-width: 320px;
+    width: 100%;
+    padding: 110px 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.about__description-container {
+    padding-top: 70px;
+    display: flex;
+    gap: 40px;
+}
+
+.about__description {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.about__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #000000;
+}
+
+.about__text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.about__time-container {
+    display: flex;
+    padding-top: 110px;
+}
+
+.about__backend {
+    width: calc(100% / 5);
+    text-align: center;
+}
+
+.about__frontend {
+    width: calc(100% - (100% / 5));
+    text-align: center;
+}
+
+.about__week {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #000000;
+    min-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.about__week_frontend {
+    background-color: #F2F2F2;
+    color: #000000;
+}
+
+.about__tech {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #A0A0A0;
+
+}
+
+
+@media screen and (max-width: 1023px) {
+    .about {
+        padding: 90px 50px;
+
+    }
+
+    .about__description-container {
+        gap: 30px;
+        padding-top: 60px;
+    }
+
+}
+
+@media screen and (max-width: 660px) {
+    .about {
+        padding: 70px 18px;
+
+    }
+
+    .about__description {
+
+        gap: 16px;
+    }
+
+    .about__description-container {
+        flex-direction: column;
+        gap: 56px;
+    }
+
+    .about__week {
+        font-size: 11px;
+        line-height: 13px;
+        margin-bottom: 10px;
+        min-height: 35px;
+    }
+
+    .about__backend {
+        width: 100px;
+    }
+
+    .about__frontend {
+        width: calc(100% - 100px);
+        text-align: center;
+    }
+
+    .about__tech {
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .about__time-container {
+        padding-top: 60px;
+    }
+
+}
