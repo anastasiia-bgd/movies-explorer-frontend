@@ -7,7 +7,6 @@ function AccountButton() {
   return (
     <Link to="/profile" className="account-button ">
       <img src={account} alt='аккаунт' />
-      {/* <p className='account-button__text'>Аккаунт</p> */}
     </Link>
 
   );
