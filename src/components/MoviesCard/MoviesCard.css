@@ -51,6 +51,10 @@
     cursor: pointer;
 }
 
+.card__like_type_delete{
+    background-image: url(../../images/like-delete.svg);
+  }
+
 .card__like:hover {
     opacity: 0.7;
 }

@@ -50,8 +50,8 @@
     .movies__list {
         grid-template-columns: repeat(1, minmax(min-content, max-content));
         gap: 34px;
+        padding: 0x 10px 0px;
     }
-
     .movies__button {
         width: 240px;
     }

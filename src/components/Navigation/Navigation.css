@@ -1,7 +1,6 @@
 .navigation {
     display: flex;
     z-index: 1;
-
 }
 
 .navigation__overlay {

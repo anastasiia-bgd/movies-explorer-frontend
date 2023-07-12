@@ -5,13 +5,23 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className='footer'>
-      <p className='footer__text'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
+      <h3 className='footer__text'>Учебный проект Яндекс.Практикум х BeatFilm.</h3>
       <div className='footer__link-container'>
         <p className='footer__copyright'>&copy; 2023</p>
-        <div className='footer__links'>
-          <a className='footer__link' href='https://practicum.yandex.ru/' target='blank'>Яндекс.Практикум</a>
-          <a className='footer__link' href='https://github.com/anastasiia-bgd/' target='blank'>Github</a>
-        </div>
+          <a 
+          className='footer__link' 
+          href='https://practicum.yandex.ru/' 
+          rel="noreferrer"
+          target='blank'>
+            Яндекс.Практикум
+          </a>
+          <a 
+          className='footer__link' 
+          href='https://github.com/anastasiia-bgd/' 
+          target='blank'
+          rel="noreferrer">
+            Github
+            </a>
       </div>
     </footer>
   )

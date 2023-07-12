@@ -9,7 +9,7 @@ const FilterCheckbox = () => {
   };
 
   return (
-    <form className="filter-checkbox">
+    <div className="filter-checkbox">
       <label className="filter-checkbox__switch">
         <input
           className="filter-checkbox__input"
@@ -22,7 +22,7 @@ const FilterCheckbox = () => {
       <p className="filter-checkbox__text">
         <span onClick={handleCheckboxChange}>Короткометражки</span>
       </p>
-    </form>
+    </div>
   );
 };
 

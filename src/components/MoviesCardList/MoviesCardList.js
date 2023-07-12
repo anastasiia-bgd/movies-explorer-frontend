@@ -6,26 +6,22 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 
 
-function MoviesCardList() {
-
-
-    return(
-      <>
-        <ul className='movies__list'>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-            <MoviesCard/>
-        </ul>
-        <div className='movies__button-container'>
-        <button className='movies__button'>Еще</button>
-        </div>
-      </>
-    )
-}
+function MoviesCardList(props) {
+  return (
+    <ul className='movies__list'>
+      {props.movies.map((movie) => {
+        return (
+          <li>
+            <MoviesCard
+              title={movie.title}
+              duration={movie.duration}
+              isOwn={movie.isOwn}
+            />
+            </li>
+            )
+           })}
+          </ul>
+        )
+      }
 
 export default MoviesCardList;

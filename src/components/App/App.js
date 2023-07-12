@@ -13,6 +13,7 @@ import NotFound from '../NotFound/NotFound.js';
 
 function App() {
   let isLogged;
+
   return (
     <div className="page">
       <div className="page__content">

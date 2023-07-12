@@ -5,8 +5,7 @@ import logo from '../../images/logo.svg'
 import Navigation from '../Navigation/Navigation';
 import AccountButton from '../AccountButton/AccountButton';
 
-
-function Header({ loggedIn }) {
+function Header({ isLogged }) {
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -20,20 +19,19 @@ function Header({ loggedIn }) {
 
   return (
     <>
-      {loggedIn ? (
+      {!isLogged ? (
         <header className='header'>
           <Link to='/' className='header__logo'>
             <img src={logo} alt='логотип' />
           </Link>
-          <div className='header__button-container'>
+          <nav className='header__button-container'>
             <Link to='/signup' className='header__button'>
               Регистрация
             </Link>
             <Link to='/signin' className='header__button header__login-button'>
               Войти
             </Link>
-
-          </div>
+          </nav>
         </header>
       ) : (
         <header className='header header__logged'>
@@ -53,9 +51,6 @@ function Header({ loggedIn }) {
               <AccountButton />
             </div>
           </nav>
-
-
-
           <button onClick={handleOpen} className='header__burger-button'></button>
           {isClicked ? <Navigation handleClose={handleClose} /> : ''}
         </header>

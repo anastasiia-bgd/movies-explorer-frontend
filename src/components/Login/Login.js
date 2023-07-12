@@ -14,14 +14,25 @@ function Login() {
         link="/signup">
         <label className="form__field">
           E-mail
-          <input name="email" className="form__input" id="email-input" type="text" required />
-          <span className="form__input-error">Что-то пошло не так...</span>
-        </label>
+          </label>
+          <input 
+          name="email" 
+          className="form__input" 
+          placeholder=''
+          id="email-input" 
+          type="text" 
+          required />
+          <span className="form__input-error"></span>
         <label className="form__field">
           Пароль
-          <input name="password" className="form__input" id="password-input" type="password" />
-          <span className="form__input-error">Что-то пошло не так...</span>
-        </label>
+          </label>
+          <input 
+          name="password" 
+          className="form__input" 
+          id="password-input" 
+          type="password"
+          placeholder='Пароль' />
+          <span className="form__input-error"></span>
       </Form>
 )
 }

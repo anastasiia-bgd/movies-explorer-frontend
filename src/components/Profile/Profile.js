@@ -3,19 +3,20 @@ import './Profile.css';
 import Header from '../Header/Header';
 
 
-function Profile() {
+function Profile({isLogged}) {
+    isLogged = true;
     return(
       <>
-      <Header />
+    <Header isLogged={isLogged}/>
         <section className='profile'>
-           <h2 className='profile__title'>Привет, Анастасия!</h2>
+           <h1 className='profile__title'>Привет, Анастасия!</h1>
            <form className='profile__form'>
             <div className='profile__field-container profile__field-container_name'>
-                <h3 className='profile__field'>Имя</h3>
+                <h2 className='profile__field'>Имя</h2>
                 <input className='profile__field-value' type='text'  value='Анастасия'/>
             </div>
             <div className='profile__field-container profile__field-container_email'>
-                <h3 className='profile__field'>E-mail</h3>
+                <h2 className='profile__field'>E-mail</h2>
                 <input className='profile__field-value' type='email' value='pochta@yandex.ru'/>
             </div>
 

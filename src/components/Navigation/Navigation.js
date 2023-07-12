@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import './Navigation.css';
 import AccountButton from '../AccountButton/AccountButton';
 
@@ -10,19 +10,19 @@ function Navigation() {
     <div className='navigation__container'>
       <button className='navigation__close-button'></button>
       <nav className="navigation__nav">
-    <Link to="/"  className="navigation__link">
+    <NavLink to="/"  className="navigation__link">
       Главная
-    </Link>
-    <Link to="/movies"  className="navigation__link">
+    </NavLink>
+    <NavLink to="/movies"  className="navigation__link">
       Фильмы
-    </Link>
-    <Link to="/saved-movies"  className="navigation__link">
+    </NavLink>
+    <NavLink to="/saved-movies"  className="navigation__link">
       Сохранённые фильмы
-    </Link>
+    </NavLink>
   </nav>
-  <Link to='/profile' className='navigation__account-button'>
+  <NavLink to='/profile' className='navigation__account-button'>
               <AccountButton />
-            </Link>
+            </NavLink>
       </div>
 
      </div>
