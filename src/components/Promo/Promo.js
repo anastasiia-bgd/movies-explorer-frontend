@@ -6,13 +6,14 @@ const Promo = () => {
     <>
       <section className="promo">
         <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
-      </section>
+        </section>
       <nav className='navtab'>
       <a  className='navtab__button' href='#about-project'>О проекте</a>
       <a className='navtab__button' href='#techs'>Технологии</a>
       <a className='navtab__button' href='#about-me'>Студент</a>
     </nav>
     </>
+    
   );
 };
 

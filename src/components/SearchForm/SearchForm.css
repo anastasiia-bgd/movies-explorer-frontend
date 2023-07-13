@@ -1,6 +1,6 @@
 .search-form {
   margin: 0 auto;
-  padding: 70px 70px 46px;
+  padding: 70px 70px 48px;
 }
 
 .search-form__container {
@@ -71,14 +71,18 @@
 
 @media screen and (max-width: 1023px) {
   .search-form {
-    padding: 80px 0px;
+    padding: 80px 0px 70px;
     margin: 0 30px;
+  }
+
+  .search-form__form {
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 660px) {
   .search-form {
-    padding: 80px 0px 45px;
+    padding: 80px 0px 51px;
     margin: 0 10px;
   }
 
@@ -92,7 +96,7 @@
   .search-form__loupe {
     display: none;
   }
-
+  
   .search-form__input::placeholder {
     font-size: 18px;
   }

@@ -3,7 +3,6 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(min-content, max-content));
     gap: 38px 20px;
-    padding-top: 22px;
     list-style-type: none;
     padding-left: 70px;
 }
@@ -52,11 +51,10 @@
     .movies__list {
         grid-template-columns: repeat(1, minmax(min-content, max-content));
         padding-left: 10px;
-        justify-content: center;
+        
     }
     
     .movies__button {
         width: 200px;
-
     }
 }

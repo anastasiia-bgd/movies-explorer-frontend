@@ -20,7 +20,7 @@
 
 .footer__link-container {
     display: flex;
-    padding-top: 20px;
+   margin-top: 20px;
 }
 
 .footer__link {
@@ -54,14 +54,12 @@
 @media screen and (max-width: 1023px) {
 
     .footer {
-
         padding: 79px 30px 20px;
-
+        align-self: flex-end;
     }
 }
 
 @media screen and (max-width: 660px) {
-
     .footer {
         padding: 79px 10px 20px;
     }

@@ -9,6 +9,7 @@ function Profile({isLogged}) {
       <>
     <Header isLogged={isLogged}/>
         <section className='profile'>
+            <div className='profile__container'>
            <h1 className='profile__title'>Привет, Анастасия!</h1>
            <form className='profile__form'>
             <div className='profile__field-container profile__field-container_name'>
@@ -25,6 +26,7 @@ function Profile({isLogged}) {
            <button className='profile__button profile__button_out'>Выйти из аккаунта</button>
            </div>
            </form>
+           </div>
         </section>
         </>
 )

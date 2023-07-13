@@ -3,7 +3,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  max-width: 396px;
+  width: 396px;
 }
 
 .form__logo {
@@ -27,12 +27,12 @@
 .form__container {
   display: flex;
   flex-direction: column;
-  min-height: 380px;
+  min-height: 375px;
   width: 100%;
 }
 
 .form__button-save {
-  margin-top: 179px;
+  margin-top: 199px;
   height: 45px;
   border: none;
   background-color: #000000;
@@ -90,7 +90,7 @@
 
 .form__field {
   margin: 0;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
@@ -101,7 +101,7 @@
 
 .form__input {
   margin-bottom: 20px;
-  padding: 15px;
+  padding: 10px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -110,6 +110,7 @@
   border-bottom: 1px solid #e8e8e8;
   outline: none;
 }
+
 
 .form__input:focus {
   border-bottom: 1px solid #000000;
@@ -143,16 +144,18 @@
 
 @media screen and (max-width: 880px) {
   .form {
-    justify-content: center; 
+    justify-content: center;
     padding-top: 232px;
-    padding-bottom: 232px;
+    /* padding-bottom: 232px; */
   }
+
 }
 
 @media screen and (max-width: 560px) {
   .form {
     padding: 56px 30px 30px 30px;
     align-items: center;
+    width: 260px;
   }
 
   .form__title {
@@ -163,7 +166,7 @@
   .form__logo {
     margin: 0;
     padding: 0;
-  } 
+  }
 
   .form__button-save {
     font-size: 12px;

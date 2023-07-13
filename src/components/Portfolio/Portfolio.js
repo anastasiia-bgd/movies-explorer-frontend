@@ -13,7 +13,7 @@ function Portfolio() {
         <li>
           <a className='portfolio__link' href='https://anastasiia-bgd.github.io/how-to-learn/' target='blank'>
             <h3 className='portfolio__link-text'>Статичный сайт</h3>
-            <img src={arrow} alt='Иконка стрелочки' />
+            <img className='portfolio_link-image' src={arrow} alt='Иконка стрелочки' />
           </a>
         </li>
         <li>
