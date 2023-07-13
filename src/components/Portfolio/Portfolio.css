@@ -1,5 +1,5 @@
 .portfolio {
-    padding: 0 70px 125px;
+    padding: 0 70px 115px;
 }
 
 .portfolio__title {
@@ -16,6 +16,7 @@
 .portfolio__list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .portfolio__list:last-of-type {
@@ -27,9 +28,11 @@
     display: flex;
     justify-content: space-between;
     text-decoration: none;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-bottom: 19px;
     text-decoration: none;
 }
+
 
 .portfolio__link:hover {
     opacity: 0.7;

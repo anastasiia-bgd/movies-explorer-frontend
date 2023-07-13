@@ -4,7 +4,8 @@
     grid-template-columns: repeat(4, minmax(min-content, max-content));
     gap: 38px 20px;
     padding-top: 22px;
-    justify-content: center;
+    list-style-type: none;
+    padding-left: 70px;
 }
 
 .movies__button-container {
@@ -35,24 +36,27 @@
 }
 
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width:1200px) {
     .movies__list {
         grid-template-columns: repeat(2, minmax(min-content, max-content));
         gap: 30px;
-        padding: 22px 10px 0px;
+        padding-left: 30px;
+    }
 
+    .movies__button {
+        width: 240px;
     }
 }
 
-
-
-@media screen and (max-width: 660px) {
+@media screen and (max-width:600px) {
     .movies__list {
         grid-template-columns: repeat(1, minmax(min-content, max-content));
-        gap: 34px;
-        padding: 0x 10px 0px;
+        padding-left: 10px;
+        justify-content: center;
     }
+    
     .movies__button {
-        width: 240px;
+        width: 200px;
+
     }
 }

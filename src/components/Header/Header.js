@@ -34,7 +34,7 @@ function Header({ isLogged }) {
           </nav>
         </header>
       ) : (
-        <header className='header header__logged'>
+        <header className='header header_logged'>
           <Link to='/' className='header__logo'>
             <img src={logo} alt='логотип' />
           </Link>

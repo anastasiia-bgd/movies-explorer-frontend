@@ -18,9 +18,9 @@ function Login() {
           <input 
           name="email" 
           className="form__input" 
-          placeholder=''
+          placeholder="Email"
           id="email-input" 
-          type="text" 
+          type="email" 
           required />
           <span className="form__input-error"></span>
         <label className="form__field">
@@ -31,7 +31,7 @@ function Login() {
           className="form__input" 
           id="password-input" 
           type="password"
-          placeholder='Пароль' />
+          placeholder="Пароль" />
           <span className="form__input-error"></span>
       </Form>
 )
