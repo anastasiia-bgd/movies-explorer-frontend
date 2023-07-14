@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 import logo from '../../images/logo.svg'
 import Navigation from '../Navigation/Navigation';
@@ -40,12 +40,12 @@ function Header({ isLogged }) {
           </Link>
           <nav className='header__nav'>
             <div className='header__movies-container'>
-              <Link to='/movies' className='header__link'>
+              <NavLink to='/movies' className={({ isActive }) => (isActive ? "header__link_active" : "header__link")}>
                 Фильмы
-              </Link>
-              <Link to='/saved-movies' className='header__link'>
+              </NavLink>
+              <NavLink to='/saved-movies' className={({ isActive }) => (isActive ? "header__link_active" : "header__link")}>
                 Сохранённые фильмы
-              </Link>
+              </NavLink>
             </div>
             <div className='header__account-button'>
               <AccountButton />

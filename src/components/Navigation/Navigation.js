@@ -10,13 +10,13 @@ function Navigation() {
     <div className='navigation__container'>
       <button className='navigation__close-button'></button>
       <nav className="navigation__nav">
-    <NavLink to="/"  className="navigation__link">
+    <NavLink to="/"  className={({ isActive }) => (isActive ? "navigation__link_active" : "navigation__link")}>
       Главная
     </NavLink>
-    <NavLink to="/movies"  className="navigation__link">
+    <NavLink to="/movies"  className={({ isActive }) => (isActive ? "navigation__link_active" : "navigation__link")}>
       Фильмы
     </NavLink>
-    <NavLink to="/saved-movies"  className="navigation__link">
+    <NavLink to="/saved-movies"  className={({ isActive }) => (isActive ? "navigation__link_active" : "navigation__link")}>
       Сохранённые фильмы
     </NavLink>
   </nav>
