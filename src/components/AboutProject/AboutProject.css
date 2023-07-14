@@ -169,4 +169,8 @@
         padding-top: 60px;
     }
 
+    .about__title-main {
+        font-family: Inter;
+        letter-spacing: -0.72px;
+    }
 }

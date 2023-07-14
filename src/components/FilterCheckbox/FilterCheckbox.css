@@ -3,7 +3,7 @@
   padding: 33px 0 48px;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  /* align-items: center; */
   gap: 14px;
 }
 
@@ -73,6 +73,7 @@
   font-size: 13px;
   line-height: 138%;
   color: #000000;
+  margin: 0;
 }
 .filter-checkbox__text:hover {
   text-decoration: underline;

@@ -26,9 +26,9 @@
 
 .portfolio__link {
     display: flex;
+    margin-top: 20px;
     justify-content: space-between;
     text-decoration: none;
-    margin-top: 20px;
     padding-bottom: 19px;
     text-decoration: none;
     border-bottom: 1px solid #E6E6E6;
@@ -58,10 +58,6 @@
     .portfolio__link-text {
         font-size: 28px;
     }
-
-    /* .portfolio__list .portfolio__link:first-child {
-        margin: 0;
-    } */
 }
 
 @media screen and (max-width: 660px) {
@@ -79,5 +75,4 @@
         line-height: 28px;
         letter-spacing: -0.72px;
     }
-
 }

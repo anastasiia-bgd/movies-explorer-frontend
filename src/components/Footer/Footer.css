@@ -20,7 +20,7 @@
 
 .footer__link-container {
     display: flex;
-   margin-top: 20px;
+    margin-top: 20px;
 }
 
 .footer__link {
@@ -52,10 +52,8 @@
 }
 
 @media screen and (max-width: 1023px) {
-
     .footer {
         padding: 79px 30px 20px;
-        align-self: flex-end;
     }
 }
 
@@ -68,18 +66,17 @@
         padding-top: 30px;
         flex-direction: column;
         align-items: center;
-        gap: 30px;
+        margin:0;
     }
 
     .footer__copyright {
         order: 1;
         color: #A0A0A0;
+        padding-top: 18px;
     }
 
-    .footer__links {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-
+    .footer__link {
+        margin: 0;
+        padding-bottom: 12px;
     }
 }

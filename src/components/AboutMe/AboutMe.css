@@ -76,8 +76,8 @@
 
 
 .about-me__photo {
-    width: 270px;
-    height: 327px;
+    max-width: 270px;
+    max-height: 327px;
     object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
@@ -101,6 +101,10 @@
         margin-bottom: 16px;
     }
 
+    .about-me__profile {
+        justify-content: space-between;
+    }
+
     .about-me__subtitle {
         font-size: 12px;
         line-height: 18px;
@@ -116,8 +120,8 @@
     }
 
     .about-me__photo {
-        width: 255px;
-        height: 307px;
+        max-width: 100%;
+        max-height: 250px;
     }
 
     .about-me__link {
@@ -184,10 +188,11 @@
     .about-me__text {
         font-size: 11px;
         line-height: 16px;
+        margin-bottom: 40px;
     }
 
     .about-me__link {
-        margin-top: 40px;
+        margin-top: 0px;
         font-size: 14px;
         line-height: 17px;
     }

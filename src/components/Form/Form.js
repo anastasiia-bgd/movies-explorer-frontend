@@ -13,7 +13,9 @@ function Form({ children, title, buttonText, question, linkText, link }) {
       </Link>
       <h1 className="form__title">{title}</h1>
       <form className="form__container">
+        <div className='form__container-field'>
         {children}
+        </div>
         <button type="submit" className="form__button-save">
           {buttonText}
         </button>
