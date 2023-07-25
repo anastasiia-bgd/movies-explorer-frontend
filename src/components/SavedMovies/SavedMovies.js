@@ -8,23 +8,6 @@ import Footer from '../Footer/Footer';
 
 function SavedMovies({ isLogged }) {
     isLogged = true
-    let savedMovies = [
-        {
-            title: "Film 1",
-            duration: "1ч 42м",
-            isOwn: true,
-        },
-        {
-            title: "Film 2",
-            duration: "1ч 42м",
-            isOwn: true,
-        },
-        {
-            title: "Film 3",
-            duration: "1ч 42м",
-            isOwn: true,
-        },
-    ];
 
     return (
         <>
@@ -32,7 +15,7 @@ function SavedMovies({ isLogged }) {
             <main>
                 <section className='movies'>
                     <SearchForm />
-                    <MoviesCardList movies={savedMovies} />
+                    <MoviesCardList  />
                 </section>
             </main>
             <Footer />

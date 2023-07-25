@@ -1,50 +1,76 @@
 import React from 'react';
 import '../Form/Form.css';
 import Form from '../Form/Form';
+import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constants';
+import useForm from '../../utils/useForm.js'
 
-function Register() {
+
+function Register({ onRegister, onLogin }) {
+
+  const { enteredValues, errors, handleChange, isFormValid } = useForm();
+
+  function handleSubmit(e) {
+    console.log(enteredValues)
+    e.preventDefault();
+    onRegister({
+      name: enteredValues.name,
+      email: enteredValues.email,
+      password: enteredValues.password,
+    });
+  }
+
   return (
     <Form
       title="Добро пожаловать!"
       buttonText="Зарегистрироваться"
       question="Уже зарегистрированы?"
       linkText=" Войти"
-      link="/signin">
-      <label className="form__field">
+      link="/signin"
+      onSubmit={handleSubmit}
+      isDisabled={!isFormValid}
+     >
+      <label className="form__field"></label>
         Имя
-      </label>
-      <input
-        name="name"
-        className="form__input"
-        placeholder="Имя"
-        id="name-input"
-        type="text"
-        minLength="2"
-        maxLength="40"
-        required
-      />
-      <span className="form__input-error"></span>
-      <label className="form__field">
+        <input
+          name="name"
+          className="form__input"
+          placeholder="Имя"
+          id="name-input"
+          type="text"
+          minLength="2"
+          maxLength="40"
+          required
+          onChange={handleChange}
+          value={enteredValues.name || ''}
+          pattern={REGEX_NAME}
+        />
+      <span className="form__input-error">{errors.name}</span>
+      <label className="form__field"></label>
         E-mail
-      </label>
-      <input
-        name="email"
-        className="form__input"
-        placeholder="Email"
-        id="email-input"
-        type="email"
-        required />
-      <span className="form__input-error"></span>
-      <label className="form__field">
+        <input
+          name="email"
+          className="form__input"
+          placeholder="Email"
+          id="email-input"
+          type="email"
+          required
+          onChange={handleChange}
+          pattern={REGEX_EMAIL}
+          value={enteredValues.email || ''}
+        />
+      <span className="form__input-error">{errors.email}</span>
+      <label className="form__field"> </label>
         Пароль
-      </label>
-      <input name="password"
-        className="form__input"
-        id="password-input"
-        type="password" 
-        placeholder="Пароль"
-        required/>
-      <span className="form__input-error"></span>
+        <input name="password"
+          className="form__input"
+          id="password-input"
+          type="password"
+          placeholder="Пароль"
+          required
+          onChange={handleChange}
+          value={enteredValues.password || ''}
+        />
+      <span className="form__input-error">{errors.password}</span>
     </Form>
   );
 }

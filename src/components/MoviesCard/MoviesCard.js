@@ -1,12 +1,11 @@
 import React from 'react';
 import './MoviesCard.css';
-import cardImage from '../../images/cardImage.jpg';
 
 
-function MoviesCard({ title, duration, isOwn}) {
+function MoviesCard({ title, duration, isOwn, image}) {
     return(
         <li className='card'>
-            <img className='card__image' src={cardImage} alt='Изображение карточки'/>
+            <img className='card__image' src={`https://api.nomoreparties.co/${image}`} alt='Изображение карточки'/>
             <div className='card__description'>
                 <h2 className='card__name'>{title}</h2>
                 {isOwn?(
