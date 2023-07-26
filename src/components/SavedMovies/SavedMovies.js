@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../Movies/Movies.css';
 import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -6,8 +6,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 
 
-function SavedMovies({ isLogged }) {
-    isLogged = true
+function SavedMovies({ isLogged, savedMovies, onCardDelete, isSavedFilms }) {
+
 
     return (
         <>
@@ -15,7 +15,10 @@ function SavedMovies({ isLogged }) {
             <main>
                 <section className='movies'>
                     <SearchForm />
-                    <MoviesCardList  />
+                    <MoviesCardList 
+                    savedMovies={savedMovies}
+                    isSavedFilms={true}
+                    onCardDelete={onCardDelete}/>
                 </section>
             </main>
             <Footer />

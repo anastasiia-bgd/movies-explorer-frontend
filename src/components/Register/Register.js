@@ -5,7 +5,7 @@ import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constants';
 import useForm from '../../utils/useForm.js'
 
 
-function Register({ onRegister, onLogin }) {
+function Register({ onRegister}) {
 
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
@@ -29,12 +29,12 @@ function Register({ onRegister, onLogin }) {
       onSubmit={handleSubmit}
       isDisabled={!isFormValid}
      >
-      <label className="form__field"></label>
+      <label className="form__field">
         Имя
         <input
           name="name"
           className="form__input"
-          placeholder="Имя"
+          // placeholder="Имя"
           id="name-input"
           type="text"
           minLength="2"
@@ -45,12 +45,13 @@ function Register({ onRegister, onLogin }) {
           pattern={REGEX_NAME}
         />
       <span className="form__input-error">{errors.name}</span>
-      <label className="form__field"></label>
+      </label>
+      <label className="form__field">
         E-mail
         <input
           name="email"
           className="form__input"
-          placeholder="Email"
+          // placeholder="Email"
           id="email-input"
           type="email"
           required
@@ -59,18 +60,20 @@ function Register({ onRegister, onLogin }) {
           value={enteredValues.email || ''}
         />
       <span className="form__input-error">{errors.email}</span>
-      <label className="form__field"> </label>
+      </label>
+      <label className="form__field"> 
         Пароль
         <input name="password"
           className="form__input"
           id="password-input"
           type="password"
-          placeholder="Пароль"
+          // placeholder="Пароль"
           required
           onChange={handleChange}
           value={enteredValues.password || ''}
         />
       <span className="form__input-error">{errors.password}</span>
+      </label>
     </Form>
   );
 }

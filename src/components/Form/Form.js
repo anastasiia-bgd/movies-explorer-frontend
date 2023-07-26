@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg'
 
 
 
-function Form({ children, title, buttonText, question, linkText, link }) {
+function Form({ children, title, buttonText, question, linkText, link, isDisabled, onSubmit }) {
 
   return (
     <div className="form">
@@ -13,11 +13,17 @@ function Form({ children, title, buttonText, question, linkText, link }) {
         <img src={logo} alt="логотип" />
       </Link>
       <h1 className="form__title">{title}</h1>
-      <form className="form__container" id='form' noValidate>
+      <form className="form__container" id='form' onSubmit={onSubmit} noValidate>
         <div className='form__container-field'>
         {children}
         </div>
-        <button type="submit" className="form__button-save">
+        <button type="submit" 
+        disabled={isDisabled ? true : false}
+        className={
+          isDisabled
+            ? 'form__button-save form__button-save_inactive'
+            : 'form__button-save'
+        }>
           {buttonText}
         </button>
       </form>

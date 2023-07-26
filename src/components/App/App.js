@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import './App.css';
 import Main from '../Main/Main.js'
@@ -12,34 +12,35 @@ import { apiMovies } from '../../utils/MoviesApi.js'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import * as  auth from "../../utils/auth.js";
 import api from "../../utils/MainApi.js"
-
+import { setMoviesOnLocalStorage } from '../../utils/utils';
+import { deleteMoviesOnLocalStorage } from '../../utils/utils';
 
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  
+  const [savedMovies, setSavedMovies] = useState([]);
+
+
+
   const navigate = useNavigate();
 
- 
-  useEffect(()=> {
+  useEffect(() => {
     apiMovies.getMovies()
-    .then((allMoviesData) => {
-      localStorage.setItem('allMovies', JSON.stringify(allMoviesData));
-    //setAllMovies(allMoviesData)
-    })
-    .catch(() => {
-      localStorage.removeItem('allMovies');
-    })
-  }, [])
+      .then((allMoviesData) => {
+        localStorage.setItem('allMovies', JSON.stringify(allMoviesData));
+        //setAllMovies(allMoviesData)
+      })
+      .catch(() => {
+        localStorage.removeItem('allMovies');
+      })
+  }, [isLogged])
 
   const sortFilms = (arr, title) => {
     let newArr = [];
-    console.log(arr)
-   
     arr.forEach(item => {
-       if (item.nameEN.toLowerCase().includes(title.toLowerCase())) newArr.push(item)
+      if (item.nameRU.toLowerCase().includes(title.toLowerCase())) newArr.push(item)
     });
 
     return newArr
@@ -62,6 +63,7 @@ function App() {
       .then((userData) => {
         if (userData) {
           handleSubmitLogin({ email, password });
+          setIsLogged(true);
         }
       })
       .catch((err) => {
@@ -69,13 +71,13 @@ function App() {
       })
   }
 
-
   function handleSubmitLogin({ email, password }) {
     auth
       .login(email, password)
       .then((data) => {
-        if (data.token) {
+        if (data) {
           setIsLogged(true);
+          localStorage.setItem('jwt', data.token);
           navigate("/movies", { replace: true });
         }
       })
@@ -84,20 +86,64 @@ function App() {
       })
   }
 
+  const handleSignOut = () => {
+    setIsLogged(false);
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('savedMovies');
+    localStorage.removeItem('shortMovies');
+    localStorage.removeItem('allMovies');
+    navigate('/');
+  };
+
+  function handleUpdateUser(newUserInfo) {
+    api
+      .editUserInfo(newUserInfo)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  function handleLikeClick(card) {
+    api
+      .addSavedMovies(card)
+      .then((newMovie) => {
+        console.log(newMovie)
+        setSavedMovies([newMovie, ...savedMovies])
+        setMoviesOnLocalStorage(newMovie);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleCardDelete(card) {
+    api
+      .deleteSavedMovie(card._id)
+      .then(() => {
+        setSavedMovies((state) => state.filter((item) => item._id !== card._id));
+        deleteMoviesOnLocalStorage(card)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
       auth.checkToken(token)
         .then((data) => {
           setIsLogged(true);
-          setCurrentUser(data.data);
-          navigate("/");
+          setCurrentUser(data);
         })
         .catch((err) => {
           console.log(err);
         })
     }
-  }, [navigate]);
+  }, [isLogged]);
 
   useEffect(() => {
     if (isLogged) {
@@ -105,7 +151,7 @@ function App() {
         .getUserInfo()
         .then((data) => {
           setCurrentUser(data);
-          // console.log(data);
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -113,20 +159,30 @@ function App() {
     }
   }, [isLogged]);
 
+
   return (
     <div className="page">
       <div className="page__content">
-      <CurrentUserContext.Provider value={currentUser} >
-      <Routes>
-        <Route path='/' element={<Main isLogged={isLogged}/>}/>
-        <Route path='/movies' element={<Movies isLogged={isLogged} allMovies={allMovies} setFilms={setFilms} />}/>
-        <Route path='/saved-movies' element={<SavedMovies isLogged={isLogged}/>}/>
-        <Route path='/profile' element={<Profile isLogged={isLogged}/>}/>
-        <Route path='/signin' element={<Login/>}/>
-        <Route path='/signup' element={<Register onRegister={handleSubmitRegister} onLogin={handleSubmitLogin}/>}/>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      </CurrentUserContext.Provider>
+        <CurrentUserContext.Provider value={currentUser} >
+          <Routes>
+            <Route path='/' element={<Main isLogged={isLogged} />} />
+            <Route
+              path='/movies'
+              element={<Movies
+                isLogged={isLogged}
+                allMovies={allMovies}
+                setFilms={setFilms}
+                savedMovies={savedMovies}
+                onCardDelete={handleCardDelete}
+                handleLikeClick={handleLikeClick}
+              />} />
+            <Route path='/saved-movies' element={<SavedMovies isLogged={isLogged} />} />
+            <Route path='/profile' element={<Profile isLogged={isLogged} signOut={handleSignOut} onUpdateUser={handleUpdateUser} />} />
+            <Route path='/signin' element={<Login onLogin={handleSubmitLogin} />} />
+            <Route path='/signup' element={<Register onRegister={handleSubmitRegister} onLogin={handleSubmitLogin} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </CurrentUserContext.Provider>
       </div>
     </div>
   );
