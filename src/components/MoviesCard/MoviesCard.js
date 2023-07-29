@@ -3,19 +3,18 @@ import './MoviesCard.css';
 import { durationConverter } from '../../utils/utils.js';
 
 
-function MoviesCard({ movie, isSavedFilms, handleLikeClick, onCardDelete, saved, savedMovies}) {
-    console.log(movie)
+function MoviesCard({ card, isSavedFilms, handleLikeClick, onCardDelete, saved, savedMovies}) {
+
     function onCardClick() {
-        console.log(saved)
         if (saved) {
-          onCardDelete(savedMovies.filter((m) => m.movieId === movie.id)[0]);
+          onCardDelete(savedMovies.filter((m) => m.movieId === card.id)[0]);
         } else {
-          handleLikeClick(movie);
+          handleLikeClick(card);
         }
       }
     
       function onDelete() {
-        onCardDelete(movie);
+        onCardDelete(card);
       }
 
       const cardSaveButtonClassName = `${saved ? 'card__like card__like_type_active' : 'card__like'
@@ -23,9 +22,13 @@ function MoviesCard({ movie, isSavedFilms, handleLikeClick, onCardDelete, saved,
 
     return(
         <li className='card'>
-            <img className='card__image' src={`https://api.nomoreparties.co/${movie.image.url}`} alt='Изображение карточки'/>
+           <a href={card.trailerLink} target="_blank" rel="noreferrer">
+            <img className='card__image' 
+            src={isSavedFilms ? card.image : `https://api.nomoreparties.co/${card.image.url}`} 
+            alt='Изображение карточки'/>
+            </a>
             <div className='card__description'>
-                <h2 className='card__name'>{movie.nameRU}</h2>
+                <h2 className='card__name'>{card.nameRU}</h2>
                 {isSavedFilms ? (
                 <button className='card__like card__like_type_delete' onClick={onDelete}>
                 </button>) : (
@@ -34,7 +37,7 @@ function MoviesCard({ movie, isSavedFilms, handleLikeClick, onCardDelete, saved,
                 )
 }
             </div>
-            <span className='card__duration'>{durationConverter(movie.duration)}</span>
+            <span className='card__duration'>{durationConverter(card.duration)}</span>
         </li>
     )
 }

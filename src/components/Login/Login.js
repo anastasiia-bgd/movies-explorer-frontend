@@ -5,7 +5,7 @@ import useForm from '../../utils/useForm';
 import { REGEX_EMAIL } from '../../utils/constants';
 
 
-function Login({ onLogin }) {
+function Login({ onLogin, isLoading }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   function handleSubmit(e) {
@@ -25,6 +25,7 @@ function Login({ onLogin }) {
       link="/signup"
       onSubmit={handleSubmit}
       isDisabled={!isFormValid}
+      isLoading={isLoading}
     >
       <label className="form__field">
         E-mail

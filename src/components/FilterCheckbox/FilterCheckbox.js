@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FilterCheckbox.css";
 
-const FilterCheckbox = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const FilterCheckbox = ({ onFilter, isShortMovies }) => {
+  // const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
+  // const handleCheckboxChange = () => {
+  //   setIsChecked(!isChecked);
+  // };
 
   return (
     <div className="filter-checkbox">
@@ -14,13 +14,13 @@ const FilterCheckbox = () => {
         <input
           className="filter-checkbox__input"
           type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckboxChange}
+          checked={isShortMovies}
+          onChange={onFilter}
         />
         <span className="filter-checkbox__slider filter-checkbox__slider_type_round"></span>
       </label>
       <p className="filter-checkbox__text">
-        <span onClick={handleCheckboxChange}>Короткометражки</span>
+        <span>Короткометражки</span>
       </p>
     </div>
   );

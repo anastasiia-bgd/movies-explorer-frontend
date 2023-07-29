@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg'
 
 
 
-function Form({ children, title, buttonText, question, linkText, link, isDisabled, onSubmit }) {
+function Form({ children, title, buttonText, question, linkText, link, isDisabled, onSubmit, isLoading }) {
 
   return (
     <div className="form">
@@ -20,7 +20,7 @@ function Form({ children, title, buttonText, question, linkText, link, isDisable
         <button type="submit" 
         disabled={isDisabled ? true : false}
         className={
-          isDisabled
+          isDisabled || isLoading
             ? 'form__button-save form__button-save_inactive'
             : 'form__button-save'
         }>

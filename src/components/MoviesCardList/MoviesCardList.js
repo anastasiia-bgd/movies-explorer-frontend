@@ -6,10 +6,10 @@ import { SHOW_MORE_DECKTOP, SHOW_MORE_TABLET, SHOW_MORE_MOBILE } from '../../uti
 import Preloader from '../Preloader/Preloader.js';
 import SearchError from '../SearchError/SearchError.js';
 
-function MoviesCardList({ allMovies, isSavedFilms, handleLikeClick, savedMovies, onCardDelete, isNotFound, isReqErr }) {
-
-  const { pathname } = useLocation();
+function MoviesCardList({ cards, isSavedFilms, handleLikeClick, savedMovies, onCardDelete, isNotFound, isReqErr, isLoading }) {
+  
   const [shownMovies, setShownMovies] = useState(0);
+  const { pathname } = useLocation();
 
   function shownCount() {
     const display = window.innerWidth;
@@ -19,7 +19,7 @@ function MoviesCardList({ allMovies, isSavedFilms, handleLikeClick, savedMovies,
       setShownMovies(12);
     } else if (display > 800) {
       setShownMovies(8);
-    } else if (display < 800) {
+    } else if (display < 480) {
       setShownMovies(5);
     }
   }
@@ -55,21 +55,30 @@ function MoviesCardList({ allMovies, isSavedFilms, handleLikeClick, savedMovies,
   function getSavedMovieCard(savedMovies, card) {
     return savedMovies.find((savedMovie) => savedMovie.movieId === card.id);
   }
-  
+
   return (
     <>
-      {(
+      {isLoading && <Preloader />}
+      {isNotFound && !isLoading && <SearchError errorText={'Ничего не найдено'} />}
+      {isReqErr && !isLoading && (
+        <SearchError
+          errorText={
+            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+          }
+        />
+      )}
+       {!isLoading && !isReqErr && !isNotFound && ( 
         <>
           {pathname === '/saved-movies' ? (
             <>
-              <div className='movies__list-container'>
+             <div className='movies__list-container'>
                 <ul className="movies__list">
-                  {allMovies.map((movie) => (
+                  {cards.map((card) => (
                     <MoviesCard
-                      key={isSavedFilms ? movie._id : movie.id}
-                      saved={getSavedMovieCard(savedMovies, movie)}
-                      allMovies={allMovies}
-                      movie={movie}
+                      key={isSavedFilms ? card._id : card.id}
+                      saved={getSavedMovieCard(savedMovies, card)}
+                      cards={cards}
+                      card={card}
                       isSavedFilms={isSavedFilms}
                       handleLikeClick={handleLikeClick}
                       onCardDelete={onCardDelete}
@@ -77,18 +86,18 @@ function MoviesCardList({ allMovies, isSavedFilms, handleLikeClick, savedMovies,
                     />
                   ))}
                 </ul>
-              </div>
+                </div>
             </>
           ) : (
             <>
               <div className='movies__list-container'>
                 <ul className="movies__list">
-                  {allMovies.slice(0, shownMovies).map((movie) => (
+                  {cards.slice(0, shownMovies).map((card) => (
                     <MoviesCard
-                      key={isSavedFilms ? movie._id : movie.id}
-                      saved={getSavedMovieCard(savedMovies, movie)}
-                      allMovies={allMovies}
-                      movie={movie}
+                      key={isSavedFilms ? card._id : card.id}
+                      saved={getSavedMovieCard(savedMovies, card)}
+                      cards={cards}
+                      card={card}
                       isSavedFilms={isSavedFilms}
                       handleLikeClick={handleLikeClick}
                       onCardDelete={onCardDelete}
@@ -96,9 +105,9 @@ function MoviesCardList({ allMovies, isSavedFilms, handleLikeClick, savedMovies,
                     />
                   ))}
                 </ul>
-              </div>
+             </div>
               <div className='movies__button-container'>
-                {allMovies.length > shownMovies ? (
+                {cards.length > shownMovies ? (
                   <button className="movies__button" onClick={showMore}>
                     Ещё
                   </button>

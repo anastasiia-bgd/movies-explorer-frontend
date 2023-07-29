@@ -1,35 +1,45 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SearchForm.css';
-// import loupe from '../../images/loupe.svg';
-// import loupeWhite from '../../images/loupe-white.svg'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-
-
-// 1 обработчик сабмита
-// 2 получить из локального хранилища
-// 3 перебрать и отфильтровать
-// 4 отрисовать
+import { useLocation } from 'react-router-dom';
 
 
 
-function SearchForm({ setFilms }) {
-    const ref = useRef();
 
-    const handleSubmit = (e) => {
+
+
+function SearchForm({ onSearchMovies, onFilter, isShortMovies }) {
+ 
+    const [query, setQuery] = useState('');
+    const location = useLocation();
+
+
+      function handleChangeQuery(e) {
+        setQuery(e.target.value);
+      }
+
+      function handleSubmit(e) {
         e.preventDefault();
+          onSearchMovies(query);
+        }
+      
 
-        setFilms(ref.current.value)
-    }
+      useEffect(() => {
+        if (location.pathname === '/movies' && localStorage.getItem('movieSearch')) {
+          const localQuery = localStorage.getItem('movieSearch');
+          setQuery(localQuery);
+        }
+      }, [location]);
 
     return(
         <section className='search-form'>
             <div className='search-form__container'>
             <form className='search-form__form' onSubmit={handleSubmit}>
-                <input ref={ref} placeholder='Фильм' className='search-form__input' required></input>
+                <input placeholder='Фильм' className='search-form__input' onChange={handleChangeQuery} value={query || ''}required></input>
                 <button className='search-form__button' type='submit'>Найти</button>
             </form>
             </div>
-            <FilterCheckbox />
+            <FilterCheckbox isShortMovies={isShortMovies} onFilter={onFilter} />
         </section>
     )
 }
