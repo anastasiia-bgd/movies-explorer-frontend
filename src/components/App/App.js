@@ -27,6 +27,43 @@ function App() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth.checkToken(token)
+        .then((data) => {
+          setIsLogged(true);
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLogged) {
+      api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    apiMovies
+      .getMovies()
+      .then((cardsData) => {
+        setFilteredMovies(cardsData.reverse())
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [isLogged]);
+
+
   function handleSubmitRegister({ name, email, password }) {
     auth
       .register(name, email, password)
@@ -65,11 +102,11 @@ function App() {
   const handleSignOut = () => {
     setIsLogged(false);
     localStorage.removeItem('jwt');
-    localStorage.removeItem('savedMovies');
     localStorage.removeItem('shortMovies');
     localStorage.removeItem('allMovies');
-    localStorage.removeItem('movieSearch')
-    localStorage.removeItem('movies')
+    localStorage.removeItem('movieSearch');
+    localStorage.removeItem('movies');
+    setCurrentUser({});
     navigate('/');
   };
 
@@ -110,47 +147,8 @@ function App() {
       })
       .catch((err) => {
         setIsSuccess(false);
-        console.log(err);
       });
   }
-
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    // const moviesInLocalStorage = localStorage.getItem("savedMovies")
-    if (token) {
-      auth.checkToken(token)
-        .then((data) => {
-          setIsLogged(true);
-          // setCurrentUser(data);
-          // setSavedMovies(moviesInLocalStorage)
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-  }, [isLogged]);
-
-  useEffect(() => {
-    if (isLogged) {
-      api
-        .getUserInfo()
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    apiMovies
-      .getMovies()
-      .then((cardsData) => {
-        setFilteredMovies(cardsData.reverse())
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [isLogged]);
 
   function closeUnsuccessPopup() {
     setIsSuccess(true);
@@ -158,9 +156,9 @@ function App() {
   }
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <div className="page__content">
-        <CurrentUserContext.Provider value={currentUser} >
           <Routes>
             <Route path='/' element={<Main isLogged={isLogged} />} />
             <Route
@@ -169,8 +167,6 @@ function App() {
                 <ProtectedRoute
                   element={Movies}
                   isLogged={isLogged}
-                  // allMovies={allMovies}
-                  // setFilms={setFilms}
                   savedMovies={savedMovies}
                   onCardDelete={handleCardDelete}
                   handleLikeClick={handleLikeClick}
@@ -193,11 +189,11 @@ function App() {
             <Route path='/signup' element={<Register onRegister={handleSubmitRegister} onLogin={handleSubmitLogin} isLoading={isLoading} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </CurrentUserContext.Provider>
         <InfoTooltip isSuccess={isSuccess} onClose={closeUnsuccessPopup} />
         <InfoTooltip isSuccess={!isUpdate} isUpdate={isUpdate} onClose={closeUnsuccessPopup} />
       </div>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 

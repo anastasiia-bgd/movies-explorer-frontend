@@ -50,7 +50,6 @@ function Register({ onRegister }) {
         <input
           name="email"
           className="form__input"
-          // placeholder="Email"
           id="email-input"
           type="email"
           required
@@ -66,7 +65,6 @@ function Register({ onRegister }) {
           className="form__input"
           id="password-input"
           type="password"
-          // placeholder="Пароль"
           required
           onChange={handleChange}
           value={enteredValues.password || ''}

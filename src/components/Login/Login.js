@@ -32,7 +32,6 @@ function Login({ onLogin, isLoading }) {
         <input
           name="email"
           className="form__input"
-          // placeholder="Email"
           id="email-input"
           type="email"
           required
@@ -50,7 +49,6 @@ function Login({ onLogin, isLoading }) {
           id="password-input"
           type="password"
           // placeholder="Пароль"
-          onChange={handleChange}
           value={enteredValues.password || ''} />
         <span className="form__input-error">{errors.password}</span>
       </label>

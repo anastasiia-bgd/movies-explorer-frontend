@@ -13,10 +13,9 @@ class MainApi {
   getUserInfo() {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._baseUrl}/users`, {
-      // credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
       },
     }).then((res) => this._checkResponse(res));
   }
@@ -24,7 +23,6 @@ class MainApi {
   logout() {
     return fetch(`${this._baseUrl}/signout`, {
       method: "GET",
-      // credentials: "include",
     }).then((res) => {
       return this._checkResponse(res);
     });
@@ -34,7 +32,6 @@ class MainApi {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      // credentials: "include",
       headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -72,7 +69,6 @@ class MainApi {
     }).then(this._checkResponse)
   }
 
-    // сохраненные фильмы
     getSavedMovies() {
       const token = localStorage.getItem("jwt");
       return fetch(`${this._baseUrl}/movies`, {
@@ -89,7 +85,6 @@ class MainApi {
     deleteSavedMovie(movieId) {
       const token = localStorage.getItem("jwt");
       return fetch(`${this._baseUrl}/movies/${movieId}`, {
-        // credentials: "include",
         method: "DELETE",
         headers: {
           authorization: `Bearer ${token}`,
