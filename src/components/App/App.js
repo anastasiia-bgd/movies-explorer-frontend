@@ -31,9 +31,11 @@ function App() {
     const token = localStorage.getItem("jwt");
     if (token) {
       auth.checkToken(token)
-        .then((data) => {
-          setIsLogged(true);
-          setCurrentUser(data);
+        .then((res) => {
+          if(res) {
+            setIsLogged(true);
+            setCurrentUser(res);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -43,24 +45,14 @@ function App() {
 
   useEffect(() => {
     if (isLogged) {
-      api
-        .getUserInfo()
-        .then((data) => {
-          setCurrentUser(data);
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    Promise.all([api.getUserInfo(), api.getSavedMovies()])
+    .then(([user, favMovies]) => {
+      console.log(favMovies);
+      setCurrentUser(user);
+      setSavedMovies(favMovies.filter((movie)=> movie.owner === currentUser._id).reverse());
+    })
+    .catch((err) => console.log(err))
     }
-    apiMovies
-      .getMovies()
-      .then((cardsData) => {
-        setFilteredMovies(cardsData.reverse())
-      })
-      .catch((err) => {
-        console.log(err);
-      })
   }, [isLogged]);
 
 

@@ -5,6 +5,7 @@ import { durationConverter } from '../../utils/utils.js';
 
 function MoviesCard({ card, isSavedFilms, handleLikeClick, onCardDelete, saved, savedMovies}) {
 
+
     function onCardClick() {
         if (saved) {
           onCardDelete(savedMovies.filter((m) => m.movieId === card.id)[0]);

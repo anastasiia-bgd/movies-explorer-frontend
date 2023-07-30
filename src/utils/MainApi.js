@@ -73,9 +73,9 @@ class MainApi {
       const token = localStorage.getItem("jwt");
       return fetch(`${this._baseUrl}/movies`, {
         method: "GET",
-        credentials: "include",
         headers: {
           authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       }).then((res) => {
         return this._checkResponse(res);
