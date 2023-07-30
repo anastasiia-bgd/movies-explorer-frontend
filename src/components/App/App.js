@@ -67,11 +67,8 @@ function App() {
   function handleSubmitRegister({ name, email, password }) {
     auth
       .register(name, email, password)
-      .then((userData) => {
-        if (userData) {
+      .then(() => {
           handleSubmitLogin({ email, password });
-          setIsLogged(true);
-        }
       })
       .catch((err) => {
         setIsSuccess(false);

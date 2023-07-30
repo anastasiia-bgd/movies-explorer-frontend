@@ -8,7 +8,7 @@ import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constants';
 
 function Profile({ isLogged, onUpdateUser, signOut }) {
     const currentUser = useContext(CurrentUserContext);
-    const { enteredValues, setEnteredValues, errors, handleChange, isFormValid, resetForm } = useForm();
+    const { enteredValues, errors, handleChange, isFormValid, resetForm } = useForm();
     const [isLastValues, setIsLastValues] = useState(false);
 
     useEffect(() => {

@@ -10,9 +10,6 @@ const useForm = () => {
     const name = event.target.name;
     const value = event.target.value;
 
-    console.log(value);
-    console.log(event.target.name);
-
     setEnteredValues({
       ...enteredValues,
       [name]: value,

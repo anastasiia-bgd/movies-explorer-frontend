@@ -15,7 +15,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/users`, {
       headers: {
         Authorization: `Bearer ${token}`,
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
       },
     }).then((res) => this._checkResponse(res));
   }
