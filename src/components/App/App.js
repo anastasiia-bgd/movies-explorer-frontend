@@ -26,6 +26,8 @@ function App() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const path = window.location.pathname;
+
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -35,6 +37,8 @@ function App() {
           if(res) {
             setIsLogged(true);
             setCurrentUser(res);
+            console.log(currentUser);
+            navigate(path);
           }
         })
         .catch((err) => {

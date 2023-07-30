@@ -48,7 +48,7 @@ function Login({ onLogin, isLoading }) {
           className="form__input"
           id="password-input"
           type="password"
-          // placeholder="Пароль"
+          onChange={handleChange}
           value={enteredValues.password || ''} />
         <span className="form__input-error">{errors.password}</span>
       </label>
