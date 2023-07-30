@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import './App.css';
 import Main from '../Main/Main.js'
 import Movies from '../Movies/Movies.js'
@@ -10,7 +10,6 @@ import Register from '../Register/Register.js'
 import NotFound from '../NotFound/NotFound.js';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { apiMovies } from '../../utils/MoviesApi.js'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import * as  auth from "../../utils/auth.js";
 import api from "../../utils/MainApi.js"
@@ -26,6 +25,7 @@ function App() {
   const [isUpdate, setIsUpdate] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -42,6 +42,15 @@ function App() {
         })
     }
   }, []);
+
+  useEffect(() => {
+    if (isLogged) {
+      const path = location.pathname;
+      if (path === '/signin' || path === '/signup') {
+        navigate('/movies', { replace: true });
+      }
+    }
+  }, [isLogged, location, navigate]);
 
   useEffect(() => {
     if (isLogged) {
