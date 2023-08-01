@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Login.css';
 import Form from '../Form/Form';
 import useForm from '../../utils/useForm';
 import { REGEX_EMAIL } from '../../utils/constants';
 
 
-function Login({ onLogin, isLoading }) {
+function Login({ onLogin }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   function handleSubmit(e) {
@@ -25,7 +25,6 @@ function Login({ onLogin, isLoading }) {
       link="/signup"
       onSubmit={handleSubmit}
       isDisabled={!isFormValid}
-      isLoading={isLoading}
     >
       <label className="form__field">
         E-mail
@@ -49,7 +48,8 @@ function Login({ onLogin, isLoading }) {
           id="password-input"
           type="password"
           onChange={handleChange}
-          value={enteredValues.password || ''} />
+          value={enteredValues.password || ''}
+          required/>
         <span className="form__input-error">{errors.password}</span>
       </label>
     </Form>

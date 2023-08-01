@@ -19,7 +19,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  // const [filteredMovies, setFilteredMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(true);
   const [isUpdate, setIsUpdate] = useState(false);
@@ -37,7 +37,6 @@ function App() {
           if(res) {
             setIsLogged(true);
             setCurrentUser(res);
-            console.log(currentUser);
             navigate(path);
           }
         })
@@ -60,14 +59,13 @@ function App() {
     if (isLogged) {
     Promise.all([api.getUserInfo(), api.getSavedMovies()])
     .then(([user, favMovies]) => {
-      console.log(favMovies);
       setCurrentUser(user);
-      setSavedMovies(favMovies.filter((movie)=> movie.owner === currentUser._id).reverse());
+      setSavedMovies(favMovies.filter((movie)=> { 
+        return movie.owner === user._id}).reverse());
     })
     .catch((err) => console.log(err))
     }
   }, [isLogged]);
-
 
   function handleSubmitRegister({ name, email, password }) {
     auth
@@ -82,7 +80,6 @@ function App() {
   }
 
   function handleSubmitLogin({ email, password }) {
-    setIsLoading(true);
     auth
       .login(email, password)
       .then((data) => {
@@ -108,7 +105,6 @@ function App() {
     localStorage.removeItem('allMovies');
     localStorage.removeItem('movieSearch');
     localStorage.removeItem('movies');
-    setCurrentUser({});
     navigate('/');
   };
 

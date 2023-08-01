@@ -66,8 +66,9 @@ function Profile({ isLogged, onUpdateUser, signOut }) {
                             type='email'
                             onChange={handleChange}
                             pattern={REGEX_EMAIL}
+                            required
                             value={enteredValues.email || ''} />
-                        <span className="profile__input-error">{errors.email}</span>
+                        <span className=" profile__field-error">{errors.email}</span>
                     </label>
                     <div className="profile__border"></div>
                     <button type='submit' disabled={!isFormValid ? true : false}

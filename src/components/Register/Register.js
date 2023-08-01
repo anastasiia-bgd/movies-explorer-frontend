@@ -33,7 +33,6 @@ function Register({ onRegister }) {
         <input
           name="name"
           className="form__input"
-          // placeholder="Имя"
           id="name-input"
           type="text"
           minLength="2"
