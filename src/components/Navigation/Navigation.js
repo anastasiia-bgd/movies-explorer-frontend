@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import './Navigation.css';
 import AccountButton from '../AccountButton/AccountButton';
 
-function Navigation() {
+function Navigation({ handleClose }) {
   return (
     <div className='navigation'>
-    <div className="navigation__overlay"></div>
+    <div className="navigation__overlay"  onClick={handleClose}></div>
     <div className='navigation__container'>
-      <button className='navigation__close-button'></button>
+      <button className='navigation__close-button' onClick={handleClose}></button>
       <nav className="navigation__nav">
     <NavLink to="/"  className={({ isActive }) => (isActive ? "navigation__link_active" : "navigation__link")}>
       Главная

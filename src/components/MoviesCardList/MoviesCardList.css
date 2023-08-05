@@ -10,7 +10,9 @@
     grid-template-columns: repeat(4, minmax(min-content, max-content));
     gap: 38px 20px;
     list-style-type: none;
+    justify-content: center;
     padding-left: 70px;
+    padding-right: 70px;
 }
 
 .movies__button-container {
